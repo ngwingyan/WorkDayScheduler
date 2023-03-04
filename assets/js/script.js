@@ -1,7 +1,7 @@
 // some pseudo code based on starter code instruction
 // define DOM elements
-var currentDateEl = $('#currentDate');
-var projectDisplayEl = $('.container')
+var currentDateEl = $("#currentDate");
+var plannerDisplayEl = $(".container");
 
 // Display the current day at the top of the calender when a user opens the planner.
 function displayCurrentDate() {
@@ -11,30 +11,22 @@ function displayCurrentDate() {
 
 displayCurrentDate ();
 
-// Present timeblocks for standard business hours when the user scrolls down.
+// Present timeblocks dynamically for standard business hours when the user scrolls down.
 function displayPlanner() {
-  var plannerRowEl = $('<tr>');
-
-  var rowHourEl = $('<td>').addClass('p-2');
-
-  var rowItemEl = $('<td>').addClass('p-2');
-
-  var saveButton = $('<td>')
-  .addClass('p-2 save-btn text-center')
-  .text('save');
-
-  plannerRowEl.append(
-    rowHourEl,
-    rowItemEl,
-    saveButton
-  );
-
-  projectDisplayEl.append(projectRowEl);
+  var row = $("<div>").addClass("p-2 row time-block");
+  var rowHourEl = $("<div>").addClass("p-2 col-lg-1 hour");
+  var rowItemEl = $("<textarea>").addClass("p-2 col-lg-10");
+  var saveIcon = $("<i>"). addClass("fa fa-save");
+  var saveButton = $("<button>").addClass("p-2 col-lg-1 saveBtn text-center");
+  
+  // append the elements to display the daily plan
+  saveButton.append(saveIcon);
+  row.append(rowHourEl, rowItemEl, saveButton);
+  plannerDisplayEl.append(row);
 }
 
 displayPlanner ();
 
-projectDisplayEl.html(test);
 
 // Color-code each timeblock based on past, present, and future when the timeblock is viewed.
 function colorCode () {
