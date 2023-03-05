@@ -9,7 +9,7 @@ Create a simple calendar application that allows a user to save events for each 
 - Start of page with current date display using moment.js
 - The table is dynamically created with jquery
 - end time is shown also
-- future time displayed in red
+- future time displayed in green
 
 ![Start](assets/images/starttime.png)
 
@@ -19,7 +19,7 @@ Create a simple calendar application that allows a user to save events for each 
 
 ![Textfield](assets/images/textfield.png)
 
-- Event are saved in local storage once the button is pressed, and persistent after refresh
+- Events are saved in local storage once the button is pressed, and persistent after refresh
 
 ![Persistent](assets/images/savedevent.png)
 
