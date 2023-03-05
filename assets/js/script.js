@@ -51,11 +51,11 @@ function displayPlanner() {
     // compare Hour on timeblock with current hour, if past, grey out the area, present = red, future = green 
     if (hour < currentHour) {
       rowEventEl.addClass("past");
-      } else if (hour == currentHour) {
+    } else if (hour == currentHour) {
       rowEventEl.addClass("present");
-      } else {
+    } else {
       rowEventEl.addClass("future");
-      } 
+    }
   }
 };
 
@@ -64,29 +64,27 @@ displayPlanner();
 
 //Save the event in local storage when the save button is clicked in that timeblock.
 $(".saveBtn").on('click', function () {
-
   // retrieve the hour of the timeblock
   var time = $(this).siblings(".hour").text();
-  // retrieve the value in <p> element
+  // retrieve the value in element
   var event = $(this).siblings(".event").val();
 
   //save to local storage
   localStorage.setItem(time, event);
-
 })
 
-// // create function to save task
-// function saveTask(hour, task) {
-//   localStorage.setItem(hour, task);
-// }
 
+// Persist events between refreshes of a page
+function showSavedEvent() {
 
+  $(".hour").each(function () {
+    var currentHour = $(this).text();
+    var currentEvent = localStorage.getItem(currentHour);
 
+    if (currentEvent !== null) {
+      $(this).siblings(".event").val(currentEvent);
+    }
+  });
+}
 
-// // Persist events between refreshes of a page
-// // to load tasks on every refresh
-// loadTask();
-
-
-
-
+showSavedEvent();
