@@ -9,38 +9,56 @@ function displayCurrentDate() {
   currentDateEl.text(currentDate);
 };
 
-displayCurrentDate ();
+displayCurrentDate();
 
 // Present timeblocks dynamically for standard business hours when the user scrolls down.
 function displayPlanner() {
-  var row = $("<div>").addClass("p-2 row time-block");
-  var rowHourEl = $("<div>").addClass("p-2 col-lg-1 hour");
-  var rowItemEl = $("<textarea>").addClass("p-2 col-lg-10");
-  var saveIcon = $("<i>"). addClass("fa fa-save");
-  var saveButton = $("<button>").addClass("p-2 col-lg-1 saveBtn text-center");
-  
-  // append the elements to display the daily plan
-  saveButton.append(saveIcon);
-  row.append(rowHourEl, rowItemEl, saveButton);
-  plannerDisplayEl.append(row);
+
+  // allow the user to customize start and end time
+  var startTime = 9;
+  var endTime = 18;
+
+  // set up the structure of the planner
+  for (var i = startTime; i < endTime; i++) {
+
+    // to display timing in X am/ X pm format
+    var HourEl = moment().hour(i).format("h a");
+
+    // define time block row
+    var row = $("<div>").addClass("row time-block").attr({ id: i });
+
+    // define timing and the event
+    var rowHourEl = $("<div>").addClass("col-lg-1 hour").text(HourEl).attr({ id: i });
+    var rowEventEl = $("<textarea>").addClass("col-lg-10").attr({ id: i });
+
+    // definte save icon as mockup and button
+    var saveIcon = $("<i>").addClass("fa fa-save").attr({ id: i });
+    var saveButton = $("<button>").addClass("col-lg-1 saveBtn text-center").attr({ id: i });
+
+    // append the elements to display the daily plan
+    saveButton.append(saveIcon);
+    row.append(rowHourEl, rowEventEl, saveButton);
+    plannerDisplayEl.append(row);
+
+  };
 }
 
-displayPlanner ();
+displayPlanner();
 
 
 // Color-code each timeblock based on past, present, and future when the timeblock is viewed.
-function colorCode () {
+function colorCode() {
   var currentHour = moment().hour();
   if (rowHour < currentHour) {
-        $(task).addClass('past');
-      } else if (rowHour === currentHour) {
-        $(task).addClass('present');
-      } else if (rowHour > currentHour) {
-        $(task).addClass('future');
-      }
+    $().addClass('past');
+  } else if (rowHour === currentHour) {
+    $().addClass('present');
+  } else if (rowHour > currentHour) {
+    $().addClass('future');
+  }
 };
 
-colorCode ();
+colorCode();
 
 // themeButtonEl.on('click', function (event) {
 //   event.preventDefault();
