@@ -28,7 +28,9 @@ function displayPlanner() {
 
     // define timing and the event
     var rowHourEl = $("<div>").addClass("col-lg-1 hour").text(HourEl).attr({ id: i });
-    var rowEventEl = $("<textarea>").addClass("col-lg-10").attr({ id: i });
+
+    // Allow a user to enter an event when they click a timeblock
+    var rowEventEl = $("<textarea>").addClass("col-lg-10 event").attr({ id: i });
 
     // definte save icon as mockup and button
     var saveIcon = $("<i>").addClass("fa fa-save").attr({ id: i });
@@ -40,40 +42,50 @@ function displayPlanner() {
     plannerDisplayEl.append(row);
 
     // Color-code each timeblock based on past, present, and future when the timeblock is viewed.
-    var currentHour = moment().hour();
-    var Hour = (moment().hour(i).format("H"));    
-    console.log(Hour);
 
-    if (Hour < currentHour) {
-      rowEventEl.addClass('past');
-    } else if (Hour === currentHour) {
-      rowEventEl.addClass('present');
-    } else {
-      rowEventEl.addClass('future');
-    }
-  };
-}
+    var currentHour = moment().hour();
+    var hour = (moment().hour(i).format("H"));
+
+    rowEventEl.remove("past, present, future");
+
+    // compare Hour on timeblock with current hour, if past, grey out the area, present = red, future = green 
+    if (hour < currentHour) {
+      rowEventEl.addClass("past");
+      } else if (hour == currentHour) {
+      rowEventEl.addClass("present");
+      } else {
+      rowEventEl.addClass("future");
+      } 
+  }
+};
 
 displayPlanner();
 
 
-// Color-code each timeblock based on past, present, and future when the timeblock is viewed.
-function colorCode() {
+//Save the event in local storage when the save button is clicked in that timeblock.
+$(".saveBtn").on('click', function () {
 
-};
+  // retrieve the hour of the timeblock
+  var time = $(this).siblings(".hour").text();
+  // retrieve the value in <p> element
+  var event = $(this).siblings(".event").val();
 
-colorCode();
+  //save to local storage
+  localStorage.setItem(time, event);
 
-// themeButtonEl.on('click', function (event) {
-//   event.preventDefault();
-//   
-// });
+})
 
-// Allow a user to enter an event when they click a timeblock
+// // create function to save task
+// function saveTask(hour, task) {
+//   localStorage.setItem(hour, task);
+// }
 
-// Save the event in local storage when the save button is clicked in that timeblock.
 
-// Persist events between refreshes of a page
+
+
+// // Persist events between refreshes of a page
+// // to load tasks on every refresh
+// loadTask();
 
 
 
