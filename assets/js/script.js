@@ -27,14 +27,14 @@ function displayPlanner() {
     var row = $("<div>").addClass("row time-block").attr({ id: i });
 
     // define timing and the event
-    var rowHourEl = $("<div>").addClass("col-lg-1 hour").text(HourEl).attr({ id: i });
+    var rowHourEl = $("<div>").addClass("col-1 hour").text(HourEl).attr({ id: i });
 
     // Allow a user to enter an event when they click a timeblock
-    var rowEventEl = $("<textarea>").addClass("col-lg-10 event").attr({ id: i });
+    var rowEventEl = $("<textarea>").addClass("col-10 event").attr({ id: i });
 
     // definte save icon as mockup and button
     var saveIcon = $("<i>").addClass("fa fa-save").attr({ id: i });
-    var saveButton = $("<button>").addClass("col-lg-1 saveBtn text-center").attr({ id: i });
+    var saveButton = $("<button>").addClass("col-1 saveBtn text-center").attr({ id: i });
 
     // append the elements to display the daily plan
     saveButton.append(saveIcon);
