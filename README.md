@@ -24,11 +24,11 @@ Create a simple calendar application that allows a user to save events for each 
 ![Persistent](assets/images/savedevent.png)
 
 ## Technology used
-- HTML and CSS were provided in the starter code of the challenge, I tried to create the jquery code without having to manually amend too much HTML and CSS. Moment.js was also used to display the time.
+- HTML and CSS were provided in the starter code of the challenge, I tried to create the jQuery code without having to manually amend too much HTML and CSS. Moment.js was also used to display the time.
 
 ## Future possible update
 - Clean the page when the current day is changed
-- introduce a remove button
+- Introduce a remove button
 
 
 ## Link
