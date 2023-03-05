@@ -1,4 +1,3 @@
-// some pseudo code based on starter code instruction
 // define DOM elements
 var currentDateEl = $("#currentDate");
 var plannerDisplayEl = $(".container");
@@ -14,7 +13,7 @@ displayCurrentDate();
 // Present timeblocks dynamically for standard business hours when the user scrolls down.
 function displayPlanner() {
 
-  // allow the user to customize start and end time
+  // allow users to choose start and end time
   var startTime = 9;
   var endTime = 18;
 
@@ -40,6 +39,18 @@ function displayPlanner() {
     row.append(rowHourEl, rowEventEl, saveButton);
     plannerDisplayEl.append(row);
 
+    // Color-code each timeblock based on past, present, and future when the timeblock is viewed.
+    var currentHour = moment().hour();
+    var Hour = (moment().hour(i).format("H"));    
+    console.log(Hour);
+
+    if (Hour < currentHour) {
+      rowEventEl.addClass('past');
+    } else if (Hour === currentHour) {
+      rowEventEl.addClass('present');
+    } else {
+      rowEventEl.addClass('future');
+    }
   };
 }
 
@@ -48,14 +59,7 @@ displayPlanner();
 
 // Color-code each timeblock based on past, present, and future when the timeblock is viewed.
 function colorCode() {
-  var currentHour = moment().hour();
-  if (rowHour < currentHour) {
-    $().addClass('past');
-  } else if (rowHour === currentHour) {
-    $().addClass('present');
-  } else if (rowHour > currentHour) {
-    $().addClass('future');
-  }
+
 };
 
 colorCode();
